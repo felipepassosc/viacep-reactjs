@@ -4,15 +4,22 @@ import api from '../services/api'
 
 class Viacep extends Component {
     state = {
-        cep: ''
+        cep: []
     }
 
     apiViacep = async () => {
+        const cep = ['13206105']
 
-        const response = await api.get(`/ws/01001000/json/`)
+        const response = await api.get(`/ws/${cep}/json/`)
         console.log(response.data)
         this.setState({
             cep: response.data
+        })
+    }
+
+    handleInputChange = e => {
+        this.setState({
+
         })
     }
 
@@ -24,10 +31,12 @@ class Viacep extends Component {
         const { cep } = this.state;
         return (
             <>
-                <h5>Vagas Frontend</h5>
-                {cep.map(repo => (
-                    <p>{repo.cep}</p>
-                    ))}
+                <h1>Viacep - React</h1>
+                <p>{cep.cep}</p>
+                <h3>{cep.logradouro}</h3>
+                <h3>{cep.bairro}</h3>
+                <h3>{cep.localidade}</h3>
+                <h3>{cep.uf}</h3>
             </>
         )
     }
